@@ -1,0 +1,30 @@
+.answer-list {
+  width: 100%;
+
+  & .list-group-item {
+    cursor: pointer;
+    padding: .85rem 1.25rem;
+  }
+
+  & .list-group-item:hover {
+    background-color: #444;
+  }
+
+  .answer-btn {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 15px;
+    border-radius: 50%;
+    transition: .1s;
+    background-color: #666;
+  }
+
+  .error .answer-btn {
+    background-color: #d62c1a;
+  }
+
+  .success .answer-btn {
+    background-color: #00bc8c;
+  }
+}

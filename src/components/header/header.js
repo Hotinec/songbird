@@ -1,0 +1,40 @@
+import React from 'react';
+import './header.scss';
+import logo from '../../assets/logo.4f82cd73.svg';
+
+const categories = [
+  'Разминка',
+  'Воробьиные',
+  'Лесные птицы',
+  'Певчие птицы',
+  'Лесные птицы',
+  'Певчие птицы',
+];
+
+const Header = ({ activeCategory }) => {
+  const categoriesItems = categories.map((item, indx) => {
+    const active = activeCategory === indx ? 'active' : '';
+
+    return (
+      <li className={`page-item ${active}`} key={`${item}_${indx}`}>
+        <a className="page-link" href="/#">
+          {item}
+        </a>
+      </li>
+    );
+  });
+
+  return (
+    <div className="header d-flex">
+      <div className="d-flex header-top">
+        <img src={logo} alt="logo" />
+        <h5>
+          Score: <span className="score">5</span>
+        </h5>
+      </div>
+      <ul className="pagination">{categoriesItems}</ul>
+    </div>
+  );
+};
+
+export default Header;

@@ -1,0 +1,49 @@
+.header {
+  flex-direction: column;
+
+  &-top {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+  }
+
+  & img {
+    width: 200px;
+    height: 55px;
+  }
+
+  & .score {
+    line-height: 55px;
+  }
+
+  & ul li {
+    flex: auto;
+    text-align: center;
+  }
+
+  & ul li a {
+    cursor: auto;
+  }
+
+  & ul.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .page-item .page-link {
+    background-color: #008966;
+    border-color: #007c5d;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .page-item.active .page-link {
+    background-color: #00bc8c;
+    border-color: #007c5d;
+  }
+}
