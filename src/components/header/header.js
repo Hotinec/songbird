@@ -11,7 +11,7 @@ const categories = [
   'Певчие птицы',
 ];
 
-const Header = ({ activeCategory }) => {
+const Header = ({ activeCategory, score }) => {
   const categoriesItems = categories.map((item, indx) => {
     const active = activeCategory === indx ? 'active' : '';
 
@@ -29,7 +29,7 @@ const Header = ({ activeCategory }) => {
       <div className="d-flex header-top">
         <img src={logo} alt="logo" />
         <h5>
-          Score: <span className="score">5</span>
+          Score: <span className="score">{score}</span>
         </h5>
       </div>
       <ul className="pagination">{categoriesItems}</ul>

@@ -1,35 +1,21 @@
 import React from 'react';
 import './answer-list.scss';
+import AnswerItem from './answer-item';
 
-const AnswerList = () => {
-  return (
-    <ul className="answer-list list-group">
-      <li className="list-group-item">
-        <span className="answer-btn"></span>
-        Ворон
-      </li>
-      <li className="list-group-item error">
-        <span className="answer-btn"></span>
-        Журавль
-      </li>
-      <li className="list-group-item success">
-        <span className="answer-btn"></span>
-        Ласточка
-      </li>
-      <li className="list-group-item">
-        <span className="answer-btn"></span>
-        Козодой
-      </li>
-      <li className="list-group-item">
-        <span className="answer-btn"></span>
-        Кукушка
-      </li>
-      <li className="list-group-item">
-        <span className="answer-btn"></span>
-        Синица
-      </li>
-    </ul>
-  );
+const AnswerList = ({ birds, onAnswerClick, randomBirdId, isAnswered }) => {
+  const birdsItems = birds.map((item) => {
+    return (
+      <AnswerItem
+        key={item.id}
+        bird={item}
+        onAnswerClick={onAnswerClick}
+        randomBirdId={randomBirdId}
+        isAnswered={isAnswered}
+      />
+    );
+  });
+
+  return <ul className="answer-list list-group">{birdsItems}</ul>;
 };
 
 export default AnswerList;

@@ -1,27 +1,36 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import './random-bird.scss';
+import birdImage from '../../assets/bird.jpg';
 
-const RandomBird = () => {
+const RandomBird = ({ bird, isAnswered }) => {
+  const player = createRef();
+
   return (
     <div className="random-bird jumbotron rounded">
       <img
         className="bird-image"
-        src="https://live.staticflickr.com/65535/49221158846_b0b69a58f1.jpg"
+        src={isAnswered ? bird.image : birdImage}
         alt="bird"
       />
       <div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h3>Журавль</h3>
+            <h3>{isAnswered ? bird.name : '******'}</h3>
           </li>
           <li className="list-group-item">
             <AudioPlayer
-              src="https://www.xeno-canto.org/sounds/uploaded/BLMSIUFTFU/XC512582-190604_1087_Grus_tok.mp3"
+              src={bird.audio}
+              ref={player}
+              layout="horizontal-reverse"
               showJumpControls={false}
               customAdditionalControls={[]}
-              customVolumeControls={[]}
-              onListen={() => console.log('Melody started!')}
+              autoPlayAfterSrcChange={false}
+              onListen={() => {
+                if (isAnswered) {
+                  player.current.audio.current.pause();
+                }
+              }}
             />
           </li>
         </ul>
