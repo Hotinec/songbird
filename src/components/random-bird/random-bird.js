@@ -7,7 +7,7 @@ const RandomBird = ({ bird, isAnswered }) => {
   const player = createRef();
 
   return (
-    <div className="random-bird jumbotron rounded">
+    <div className="random-bird jumbotron rounded text-center">
       <img
         className="bird-image"
         src={isAnswered ? bird.image : birdImage}
@@ -27,7 +27,7 @@ const RandomBird = ({ bird, isAnswered }) => {
               customAdditionalControls={[]}
               autoPlayAfterSrcChange={false}
               onListen={() => {
-                if (isAnswered) {
+                if (isAnswered && player.current) {
                   player.current.audio.current.pause();
                 }
               }}

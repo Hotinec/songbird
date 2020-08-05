@@ -89,7 +89,7 @@ $rhap_font-family: inherit !default;
   cursor: pointer;
   -webkit-user-select: none;
 
-  &:focus:not(:focus-visible) {
+  &:focus {
     outline: 0;
   }
 }
@@ -217,7 +217,7 @@ $rhap_font-family: inherit !default;
   height: 14px;
   cursor: pointer;
 
-  &:focus:not(:focus-visible) {
+  &:focus {
     outline: 0;
   }
 }
@@ -267,7 +267,17 @@ $rhap_font-family: inherit !default;
     opacity: .95;
   }
 
-  &:focus:not(:focus-visible) {
+  &:focus {
     outline: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .rhap_horizontal-reverse {
+    flex-direction: column;
+
+    & .rhap_controls-section {
+      margin: 0 auto;
+    }
   }
 }

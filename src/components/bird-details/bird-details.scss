@@ -33,6 +33,20 @@
   }
 
   .card-body .list-group {
-    width: calc(100% - 240px);
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .bird-details {
+    .card-body {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .list-group-item {
+      padding: .25rem;
+      text-align: center;
+    }
   }
 }

@@ -21,5 +21,21 @@
 
   & .list-group-item {
     padding: 5px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 320px) {
+  .random-bird {
+    flex-direction: column;
+    align-items: center;
+
+    & .list-group {
+      margin-left: 0;
+    }
+
+    & .list-group-item {
+      text-align: center;
+    }
   }
 }

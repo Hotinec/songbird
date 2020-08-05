@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './app.scss';
 import Header from '../header';
 import RandomBird from '../random-bird';
 import AnswerList from '../answer-list';
@@ -23,6 +24,10 @@ const App = () => {
   );
 
   const randomBird = birdsData[category][randomBirdItem];
+
+  useEffect(() => {
+    console.log('Correct answer: ', randomBird.name);
+  }, [randomBird]);
 
   const onNextClickHandler = () => {
     if (!isAnswered) {
@@ -70,7 +75,7 @@ const App = () => {
             randomBird={randomBird}
           />
           <div className="row mb2">
-            <div className="col-md-6">
+            <div className="col-lg-6">
               <AnswerList
                 birds={birdsData[category]}
                 onAnswerClick={onAnswerClickHandler}
@@ -78,7 +83,7 @@ const App = () => {
                 isAnswered={isAnswered}
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-lg-6 m-t">
               <BirdDetails selectedBird={selectedBird} />
             </div>
             <Button active={isAnswered} onClickHandler={onNextClickHandler}>
