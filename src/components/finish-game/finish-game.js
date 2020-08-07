@@ -11,16 +11,18 @@ const FinishGame = ({ onFinishClick, score }) => {
     return (
       <div className="jumbotron text-center finish-game">
         <img src={maxScoreImg} alt="max-score" width="60%" />
-        <hr className="my-4" />
-        <h3 className="text-center">Вы победили!</h3>
+        <h5 className="pt-4">Tеперь ты знаешь кто чирикнул!</h5>
+        <Button active={true} onClickHandler={onFinishClick}>
+          Попробовать еще раз!
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="jumbotron finish-game">
-      <h1 className="text-center">Поздравляем!</h1>
-      <p className="text-center">
+    <div className="jumbotron text-center finish-game">
+      <h1>Поздравляем!</h1>
+      <p>
         Вы прошли викторину и набрали {score} из {MAX_SCORE} возможных баллов
       </p>
       <hr className="my-4" />
