@@ -1,6 +1,7 @@
 import React from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import './bird-details.scss';
+import { PlayIcon, PauseIcon } from '../player-buttons/';
 
 const BirdDetails = ({ selectedBird }) => {
   return (
@@ -30,6 +31,10 @@ const BirdDetails = ({ selectedBird }) => {
             showJumpControls={false}
             customAdditionalControls={[]}
             autoPlayAfterSrcChange={false}
+            customIcons={{
+              play: <PlayIcon />,
+              pause: <PauseIcon />,
+            }}
           />
           <p className="card-text">{selectedBird.description}</p>
         </>

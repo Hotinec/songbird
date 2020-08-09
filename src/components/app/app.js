@@ -44,7 +44,7 @@ const App = () => {
 
     setIsAnswered(false);
     setSelectedBird(null);
-    setScorePoint(5);
+    setScorePoint(maxItem);
   };
 
   const onFinishClickHandler = () => {
@@ -53,8 +53,12 @@ const App = () => {
     setScorePoint(5);
   };
 
-  const onAnswerClickHandler = (id) => {
+  const onAnswerClickHandler = (id, wasClicked) => {
     setSelectedBird(birdsData[category].find((bird) => bird.id === id));
+
+    if (wasClicked) {
+      return;
+    }
 
     if (randomBird.id === id) {
       setIsAnswered(true);
@@ -99,14 +103,3 @@ const App = () => {
 };
 
 export default App;
-
-// не выполнено
-// 1)
-// Если правильный ответ уже дан, возможность просматривать описания птиц при клике по названию остаётся,
-// 2)
-// у кастомного аудиоплеера есть регулятор громкости звука
-// не влияет на громкость звуковой индикации
-// 3)
-// после правильного ответа на последний вопрос, клик по кнопке скрывает блок с вопросом, блок с вариантами ответов и блок с описанием птицы. Появляется сообщение с поздравлением об окончании игры: (+20)
-// Сообщение содержит количество набранных баллов из максимально возможных и кнопку с предложение сыграть ещё раз.
-// не работает при абсолютной победе

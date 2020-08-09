@@ -1,0 +1,23 @@
+.playback-button {
+  display: flex;
+  transition: .2s;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #00bc8c;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+
+  & {
+    svg {
+      -webkit-transition: .2s;
+      transition: .2s;
+      width: 18px;
+      height: 18px;
+      color: #54b1c1;
+    }
+  }
+}

@@ -9,19 +9,17 @@
     display: block;
   }
 
-  .card-body {
-    display: flex;
-    padding: 0;
-    flex-direction: row;
-    min-height: 173px;
-  }
-
   & .list-group-item {
     padding: .25rem;
   }
 
   & .card-body {
     display: flex;
+    margin-bottom: 20px;
+    padding: 0;
+    flex-direction: row;
+    flex: 0;
+    min-height: 150px;
   }
 
   & .bird-image {
@@ -29,7 +27,7 @@
     height: 155px;
     border-radius: 10px;
     object-fit: cover;
-    margin-right: 2rem;
+    margin-right: 20px;
   }
 
   .card-body .list-group {

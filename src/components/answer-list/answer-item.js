@@ -14,6 +14,7 @@ const AnswerItem = ({ bird, onAnswerClick, randomBirdId, isAnswered }) => {
 
   const handleAnswerClick = () => {
     if (isAnswered || isClicked) {
+      onAnswerClick(bird.id, isClicked);
       return;
     }
 

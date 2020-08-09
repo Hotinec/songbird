@@ -106,7 +106,7 @@ $rhap_font-family: inherit !default;
   position: relative;
   z-index: 0;
   width: 100%;
-  height: 5px;
+  height: 4px;
   background-color: $rhap_bar-color;
   border-radius: 2px;
 }
@@ -146,7 +146,7 @@ $rhap_font-family: inherit !default;
 
 .rhap_controls-section {
   display: flex;
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
   justify-content: space-between;
   align-items: center;
 }
@@ -173,7 +173,7 @@ $rhap_font-family: inherit !default;
 }
 
 .rhap_main-controls-button {
-  margin: 0 3px;
+  margin: 0 10px;
   color: $rhap_theme-color;
   font-size: 35px;
   width: 35px;
@@ -192,6 +192,7 @@ $rhap_font-family: inherit !default;
   flex: 1 0 auto;
   justify-content: flex-end;
   align-items: center;
+
 }
 
 .rhap_volume-button {
@@ -276,8 +277,8 @@ $rhap_font-family: inherit !default;
   .rhap_horizontal-reverse {
     flex-direction: column;
 
-    & .rhap_controls-section {
-      margin: 0 auto;
+    .rhap_controls-section {
+      margin: 8px auto;
     }
   }
 }

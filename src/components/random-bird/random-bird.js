@@ -1,10 +1,16 @@
-import React, { createRef } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import './random-bird.scss';
 import birdImage from '../../assets/bird.jpg';
+import { PlayIcon, PauseIcon } from '../player-buttons/';
 
 const RandomBird = ({ bird, isAnswered }) => {
+  const [stop, setStop] = useState(false);
   const player = createRef();
+
+  useEffect(() => {
+    setStop(false);
+  }, [isAnswered]);
 
   return (
     <div className="random-bird jumbotron rounded text-center">
@@ -26,9 +32,14 @@ const RandomBird = ({ bird, isAnswered }) => {
               showJumpControls={false}
               customAdditionalControls={[]}
               autoPlayAfterSrcChange={false}
+              customIcons={{
+                play: <PlayIcon />,
+                pause: <PauseIcon />,
+              }}
               onListen={() => {
-                if (isAnswered && player.current) {
+                if (player.current && isAnswered && !stop) {
                   player.current.audio.current.pause();
+                  setStop(true);
                 }
               }}
             />
