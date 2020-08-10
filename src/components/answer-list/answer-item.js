@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './answer-list.scss';
 import success from '../../assets/success.mp3';
 import error from '../../assets/error.mp3';
+import { AppContext } from '../../context/AppState';
 
-const AnswerItem = ({ bird, onAnswerClick, randomBirdId, isAnswered }) => {
+const AnswerItem = ({ bird, onAnswerClick, randomBirdId }) => {
   const [additionalClass, setAdditionalClass] = useState('');
   const [isClicked, setIsClicked] = useState(false);
+
+  const {
+    state: { isAnswered },
+  } = useContext(AppContext);
 
   useEffect(() => {
     setAdditionalClass('');
@@ -27,7 +32,7 @@ const AnswerItem = ({ bird, onAnswerClick, randomBirdId, isAnswered }) => {
     }
 
     setIsClicked(true);
-    onAnswerClick(bird.id);
+    onAnswerClick(bird.id, isClicked);
   };
 
   return (

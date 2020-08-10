@@ -1,12 +1,20 @@
-import React, { createRef, useState, useEffect } from 'react';
+import React, { createRef, useState, useEffect, useContext } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import './random-bird.scss';
 import birdImage from '../../assets/bird.jpg';
 import { PlayIcon, PauseIcon } from '../player-buttons/';
+import birdsData from '../../data/birds';
+import { AppContext } from '../../context/AppState';
 
-const RandomBird = ({ bird, isAnswered }) => {
+const RandomBird = () => {
   const [stop, setStop] = useState(false);
   const player = createRef();
+
+  const {
+    state: { randomBirdItem, isAnswered, category },
+  } = useContext(AppContext);
+
+  const bird = birdsData[category][randomBirdItem];
 
   useEffect(() => {
     setStop(false);

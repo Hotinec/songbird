@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import './bird-details.scss';
 import { PlayIcon, PauseIcon } from '../player-buttons/';
+import { AppContext } from '../../context/AppState';
 
-const BirdDetails = ({ selectedBird }) => {
+const BirdDetails = () => {
+  const {
+    state: { selectedBird },
+  } = useContext(AppContext);
+
   return (
     <div className="bird-details card">
       {!selectedBird ? (

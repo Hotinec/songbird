@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './header.scss';
 import logo from '../../assets/logo.4f82cd73.svg';
+import { AppContext } from '../../context/AppState';
 
 const categories = [
   'Разминка',
@@ -11,9 +12,12 @@ const categories = [
   'Морские птицы',
 ];
 
-const Header = ({ activeCategory, score }) => {
+const Header = () => {
+  const {
+    state: { category, score },
+  } = useContext(AppContext);
   const categoriesItems = categories.map((item, indx) => {
-    const active = activeCategory === indx ? 'active' : '';
+    const active = category === indx ? 'active' : '';
 
     return (
       <li className={`page-item ${active}`} key={`${item}_${indx}`}>

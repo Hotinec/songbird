@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import './app.scss';
 import Header from '../header';
 import RandomBird from '../random-bird';
@@ -7,27 +7,28 @@ import BirdDetails from '../bird-details';
 import Button from '../button';
 import FinishGame from '../finish-game';
 import birdsData from '../../data/birds';
-import getRandomItem from '../../utils/getRandomItem';
-
-const minItem = 0;
-const maxItem = 5;
+import { MAX_ITEM } from '../../utils/constants';
+import { AppContext } from '../../context/AppState';
+import {
+  setRandomBirdItem,
+  setIsFinished,
+  setCategory,
+  setIsAnswered,
+  setSelectedBird,
+  setScorePoint,
+} from '../../context/actions';
 
 const App = () => {
-  const [isFinished, setIsFinished] = useState(false);
-  const [isAnswered, setIsAnswered] = useState(false);
-  const [category, setCategory] = useState(0);
-  const [score, setScore] = useState(0);
-  const [scorePoint, setScorePoint] = useState(5);
-  const [selectedBird, setSelectedBird] = useState(null);
-  const [randomBirdItem, setRandomBirdItem] = useState(
-    getRandomItem(minItem, maxItem)
-  );
+  const {
+    state: { randomBirdItem, isAnswered, isFinished, category },
+    dispatch,
+  } = useContext(AppContext);
 
   const randomBird = birdsData[category][randomBirdItem];
 
   useEffect(() => {
     console.log('Correct answer: ', randomBird.name);
-  }, [randomBird]);
+  }, [randomBird.name]);
 
   const onNextClickHandler = () => {
     if (!isAnswered) {
@@ -35,60 +36,30 @@ const App = () => {
     }
 
     if (category === birdsData.length - 1) {
-      setIsFinished(true);
-      setCategory(0);
+      dispatch(setIsFinished(true));
+      dispatch(setCategory(0));
     } else {
-      setCategory(category + 1);
-      setRandomBirdItem(getRandomItem(minItem, maxItem));
+      dispatch(setCategory(category + 1));
+      dispatch(setRandomBirdItem());
     }
 
-    setIsAnswered(false);
-    setSelectedBird(null);
-    setScorePoint(maxItem);
-  };
-
-  const onFinishClickHandler = () => {
-    setIsFinished(false);
-    setScore(0);
-    setScorePoint(5);
-  };
-
-  const onAnswerClickHandler = (id, wasClicked) => {
-    setSelectedBird(birdsData[category].find((bird) => bird.id === id));
-
-    if (wasClicked) {
-      return;
-    }
-
-    if (randomBird.id === id) {
-      setIsAnswered(true);
-      setScore(score + scorePoint);
-    } else {
-      setScorePoint(scorePoint - 1);
-    }
+    dispatch(setIsAnswered(false));
+    dispatch(setSelectedBird(null));
+    dispatch(setScorePoint(MAX_ITEM));
   };
 
   return (
     <div className="app">
-      <Header activeCategory={category} score={score} />
+      <Header />
       {!isFinished ? (
         <>
-          <RandomBird
-            bird={birdsData[category][randomBirdItem]}
-            isAnswered={isAnswered}
-            randomBird={randomBird}
-          />
+          <RandomBird />
           <div className="row mb2">
             <div className="col-lg-6">
-              <AnswerList
-                birds={birdsData[category]}
-                onAnswerClick={onAnswerClickHandler}
-                randomBirdId={randomBird.id}
-                isAnswered={isAnswered}
-              />
+              <AnswerList />
             </div>
             <div className="col-lg-6 m-t">
-              <BirdDetails selectedBird={selectedBird} />
+              <BirdDetails />
             </div>
             <Button active={isAnswered} onClickHandler={onNextClickHandler}>
               Next Level
@@ -96,7 +67,7 @@ const App = () => {
           </div>
         </>
       ) : (
-        <FinishGame onFinishClick={onFinishClickHandler} score={score} />
+        <FinishGame />
       )}
     </div>
   );
