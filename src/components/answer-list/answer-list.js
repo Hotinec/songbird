@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './answer-list.scss';
 import birdsData from '../../data/birds';
 import AnswerItem from './answer-item';
@@ -18,6 +18,10 @@ const AnswerList = () => {
 
   const birds = birdsData[category];
   const randomBird = birdsData[category][randomBirdItem];
+
+  useEffect(() => {
+    console.log('Correct answer: ', randomBird.name);
+  }, [randomBird.name]);
 
   const onAnswerClick = (id, wasClicked) => {
     dispatch(

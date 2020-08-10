@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import './app.scss';
 import Header from '../header';
 import RandomBird from '../random-bird';
@@ -20,15 +20,9 @@ import {
 
 const App = () => {
   const {
-    state: { randomBirdItem, isAnswered, isFinished, category },
+    state: { isAnswered, isFinished, category },
     dispatch,
   } = useContext(AppContext);
-
-  const randomBird = birdsData[category][randomBirdItem];
-
-  useEffect(() => {
-    console.log('Correct answer: ', randomBird.name);
-  }, [randomBird.name]);
 
   const onNextClickHandler = () => {
     if (!isAnswered) {
