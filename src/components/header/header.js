@@ -14,10 +14,10 @@ const categories = [
 
 const Header = () => {
   const {
-    state: { category, score },
+    state: { category, score, isFinished },
   } = useContext(AppContext);
   const categoriesItems = categories.map((item, indx) => {
-    const active = category === indx ? 'active' : '';
+    const active = category === indx && !isFinished ? 'active' : '';
 
     return (
       <li className={`page-item ${active}`} key={`${item}_${indx}`}>
